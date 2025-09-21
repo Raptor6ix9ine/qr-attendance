@@ -4,8 +4,9 @@
 /* --- General Body & Page Styles --- */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+    /* Softer, more professional light blue background */
+    background-color: #eef5ff; 
+    color: #333D4B; /* Softer than pure black for text */
     margin: 0;
     padding: 20px;
     display: flex;
@@ -20,20 +21,23 @@ body {
     background-color: #ffffff;
     padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* A slightly more pronounced shadow for a modern "lifted" look */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
     text-align: center;
     max-width: 500px;
     width: 100%;
 }
 
+/* --- Heading Colors --- */
 h2, h3 {
-    color: #1c3d5a;
+    color: #1c3d5a; /* A deep, professional blue */
 }
 
 /* --- Button & Link Styles --- */
-.btn {
+.btn, .styled-link {
     display: inline-block;
-    background-color: #007bff;
+    /* A more vibrant and modern blue */
+    background-color: #0067f4; 
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
@@ -46,23 +50,15 @@ h2, h3 {
     margin-top: 10px;
 }
 
-.btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
+/* Links will now look like primary buttons */
 .styled-link {
     display: block;
-    font-size: 20px;
     margin: 20px 0;
-    text-decoration: none;
-    color: #007bff;
-    font-weight: 500;
-    transition: color 0.3s ease;
 }
 
-.styled-link:hover {
-    color: #0056b3;
+.btn:hover, .styled-link:hover {
+    background-color: #0052cc; /* A slightly darker shade for hover */
+    transform: translateY(-2px);
 }
 
 /* --- Form Styles --- */
@@ -73,12 +69,19 @@ form input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Add a subtle glow to the input box when selected */
+form input[type="text"]:focus {
+    outline: none;
+    border-color: #0067f4;
+    box-shadow: 0 0 0 3px rgba(0, 103, 244, 0.2);
 }
 
 /* --- QR Code & Scanner Styles --- */
 #reader {
     margin: 20px auto;
-    border: 5px solid #f0f2f5;
+    border: 5px solid #eef5ff; /* Match the new body background */
     border-radius: 8px;
 }
 
@@ -91,7 +94,8 @@ img {
 #list {
     margin-top: 20px;
     padding: 15px;
-    background-color: #f9f9f9;
+    /* A complementary light background for the list */
+    background-color: #f7f9fc; 
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     min-height: 50px;
