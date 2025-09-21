@@ -4,7 +4,6 @@
 /* --- General Body & Page Styles --- */
 body {
     font-family: 'Roboto', sans-serif;
-    /* UPDATED: Vibrant blue page background */
     background-color: #0067f4; 
     color: #333D4B; 
     margin: 0;
@@ -35,8 +34,8 @@ h2, h3 {
 /* --- Button & Link Styles --- */
 .btn, .styled-link {
     display: inline-block;
-    /* UPDATED: Vibrant blue buttons to match the new background */
-    background-color: #0067f4; 
+    /* UPDATED: Vibrant orange buttons */
+    background-color: #f39c12; 
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
@@ -55,8 +54,8 @@ h2, h3 {
 }
 
 .btn:hover, .styled-link:hover {
-    /* A slightly darker shade for hover */
-    background-color: #0052cc; 
+    /* UPDATED: Darker orange for hover */
+    background-color: #e67e22; 
     transform: translateY(-2px);
 }
 
@@ -70,11 +69,11 @@ form input[type="text"] {
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* Focus ring now matches the vibrant blue buttons */
+/* UPDATED: Focus ring now orange to match buttons */
 form input[type="text"]:focus {
     outline: none;
-    border-color: #0067f4;
-    box-shadow: 0 0 0 3px rgba(0, 103, 244, 0.2);
+    border-color: #f39c12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.25);
 }
 
 /* --- QR Code & Scanner Styles --- */
