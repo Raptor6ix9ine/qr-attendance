@@ -4,8 +4,8 @@
 /* --- General Body & Page Styles --- */
 body {
     font-family: 'Roboto', sans-serif;
-    /* UPDATED: Dark blue page background */
-    background-color: #0b5cad; 
+    /* UPDATED: Vibrant blue page background */
+    background-color: #0067f4; 
     color: #333D4B; 
     margin: 0;
     padding: 20px;
@@ -21,7 +21,7 @@ body {
     background-color: #ffffff;
     padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
     text-align: center;
     max-width: 500px;
     width: 100%;
@@ -35,8 +35,8 @@ h2, h3 {
 /* --- Button & Link Styles --- */
 .btn, .styled-link {
     display: inline-block;
-    /* UPDATED: Dark gray buttons */
-    background-color: #495057; 
+    /* UPDATED: Vibrant blue buttons to match the new background */
+    background-color: #0067f4; 
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
@@ -55,8 +55,8 @@ h2, h3 {
 }
 
 .btn:hover, .styled-link:hover {
-    /* UPDATED: Darker gray for hover */
-    background-color: #343a40; 
+    /* A slightly darker shade for hover */
+    background-color: #0052cc; 
     transform: translateY(-2px);
 }
 
@@ -70,18 +70,17 @@ form input[type="text"] {
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* UPDATED: Focus ring now gray to match buttons */
+/* Focus ring now matches the vibrant blue buttons */
 form input[type="text"]:focus {
     outline: none;
-    border-color: #495057;
-    box-shadow: 0 0 0 3px rgba(73, 80, 87, 0.25);
+    border-color: #0067f4;
+    box-shadow: 0 0 0 3px rgba(0, 103, 244, 0.2);
 }
 
 /* --- QR Code & Scanner Styles --- */
 #reader {
     margin: 20px auto;
-    /* UPDATED: Border now matches the new dark background */
-    border: 5px solid #2c3e50; 
+    border: 5px solid #f0f2f5; 
     border-radius: 8px;
 }
 
