@@ -33,17 +33,21 @@ def student():
 @app.route("/student/submit", methods=["POST"])
 def student_submit():
     session_id = request.form.get("session_id")
-    name = request.form.get("name")
+    # Getting roll number
+    roll_number = request.form.get("roll_number") 
     if session_id in sessions:
-        if name not in sessions[session_id]:
-            sessions[session_id].append(name)
-        return f"✅ Attendance marked for {name}!"
+        if roll_number not in sessions[session_id]:
+            #Save Roll number
+            sessions[session_id].append(roll_number)
+        # Success message
+        return f"✅ Attendance marked for Roll Number: {roll_number}!" 
     return "❌ Invalid or expired session."
 
 @app.route("/teacher/check/<session_id>")
 def teacher_check(session_id):
-    names = sessions.get(session_id, [])
-    return jsonify(names)
+    # This now returns a list of roll numbers
+    roll_numbers = sessions.get(session_id, [])
+    return jsonify(roll_numbers)
 
 if __name__ == "__main__":
     app.run(debug=True)
