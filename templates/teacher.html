@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher Dashboard</title>
+  <script>
+    async function refreshAttendance() {
+      const res = await fetch("/teacher/check/{{session_id}}");
+      const data = await res.json();
+      document.getElementById("list").innerHTML = data.join("<br>");
+    }
+    setInterval(refreshAttendance, 3000);
+  </script>
+</head>
+<body>
+  <h2>Session ID: {{session_id}}</h2>
+  <img src="data:image/png;base64,{{qr_data}}" width="200"><br>
+  <p>Ask students to scan this QR</p>
+  <h3>Attendance:</h3>
+  <div id="list">(waiting for students...)</div>
+</body>
+</html>
