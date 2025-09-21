@@ -15,18 +15,45 @@
 
   <h3>Scan QR Code:</h3>
   <div id="reader" style="width:300px"></div>
+  <p id="scan-success" style="color: green; font-weight: bold;"></p>
 
-  <script>
+ <script>
     function onScanSuccess(decodedText) {
-      document.getElementById("session_id").value = decodedText;
-      alert("Session ID captured: " + decodedText + ". Now enter your name and submit!");
+      // Hide the scanner and show a success message
+      html5QrCode.stop().then(ignore => {
+        document.getElementById("reader").style.display = "none";
+        document.getElementById("scan-success").innerText = "✅ QR Code Scanned: " + decodedText;
+        document.getElementById("session_id").value = decodedText;
+      }).catch(err => console.log("Failed to stop scanner.", err));
     }
+
     const html5QrCode = new Html5Qrcode("reader");
+    
     Html5Qrcode.getCameras().then(devices => {
       if (devices && devices.length) {
-        html5QrCode.start(devices[0].id, { fps: 10, qrbox: 250 }, onScanSuccess);
+        // Find the rear camera by looking for "back" in the label
+        let cameraId = devices[0].id; // Default to the first camera
+        const rearCamera = devices.find(device => device.label.toLowerCase().includes('back'));
+        
+        if (rearCamera) {
+          cameraId = rearCamera.id;
+        }
+
+        // Start scanning with the selected camera
+        html5QrCode.start(
+          cameraId, 
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 }
+          },
+          onScanSuccess
+        ).catch(err => {
+          console.log("Unable to start scanning.", err);
+        });
       }
+    }).catch(err => {
+      console.log("Error getting cameras.", err);
     });
-  </script>
+</script>
 </body>
 </html>
