@@ -4,9 +4,9 @@
 /* --- General Body & Page Styles --- */
 body {
     font-family: 'Roboto', sans-serif;
-    /* Softer, more professional light blue background */
-    background-color: #eef5ff; 
-    color: #333D4B; /* Softer than pure black for text */
+    /* UPDATED: Dark blue page background */
+    background-color: #0b5cad; 
+    color: #333D4B; 
     margin: 0;
     padding: 20px;
     display: flex;
@@ -21,7 +21,6 @@ body {
     background-color: #ffffff;
     padding: 30px 40px;
     border-radius: 12px;
-    /* A slightly more pronounced shadow for a modern "lifted" look */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
     text-align: center;
     max-width: 500px;
@@ -30,14 +29,14 @@ body {
 
 /* --- Heading Colors --- */
 h2, h3 {
-    color: #1c3d5a; /* A deep, professional blue */
+    color: #1c3d5a; 
 }
 
 /* --- Button & Link Styles --- */
 .btn, .styled-link {
     display: inline-block;
-    /* A more vibrant and modern blue */
-    background-color: #0067f4; 
+    /* UPDATED: Dark gray buttons */
+    background-color: #495057; 
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
@@ -50,14 +49,14 @@ h2, h3 {
     margin-top: 10px;
 }
 
-/* Links will now look like primary buttons */
 .styled-link {
     display: block;
     margin: 20px 0;
 }
 
 .btn:hover, .styled-link:hover {
-    background-color: #0052cc; /* A slightly darker shade for hover */
+    /* UPDATED: Darker gray for hover */
+    background-color: #343a40; 
     transform: translateY(-2px);
 }
 
@@ -71,17 +70,18 @@ form input[type="text"] {
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* Add a subtle glow to the input box when selected */
+/* UPDATED: Focus ring now gray to match buttons */
 form input[type="text"]:focus {
     outline: none;
-    border-color: #0067f4;
-    box-shadow: 0 0 0 3px rgba(0, 103, 244, 0.2);
+    border-color: #495057;
+    box-shadow: 0 0 0 3px rgba(73, 80, 87, 0.25);
 }
 
 /* --- QR Code & Scanner Styles --- */
 #reader {
     margin: 20px auto;
-    border: 5px solid #eef5ff; /* Match the new body background */
+    /* UPDATED: Border now matches the new dark background */
+    border: 5px solid #2c3e50; 
     border-radius: 8px;
 }
 
@@ -94,7 +94,6 @@ img {
 #list {
     margin-top: 20px;
     padding: 15px;
-    /* A complementary light background for the list */
     background-color: #f7f9fc; 
     border-radius: 8px;
     border: 1px solid #e0e0e0;
