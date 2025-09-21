@@ -4,7 +4,8 @@
 /* --- General Body & Page Styles --- */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #0067f4; 
+    /* UPDATED: Accurate Zoom orange background */
+    background-color: #FF742E; 
     color: #333D4B; 
     margin: 0;
     padding: 20px;
@@ -34,8 +35,8 @@ h2, h3 {
 /* --- Button & Link Styles --- */
 .btn, .styled-link {
     display: inline-block;
-    /* UPDATED: Vibrant orange buttons */
-    background-color: #f39c12; 
+    /* UPDATED: Vibrant blue buttons (restored) */
+    background-color: #0067f4; 
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 8px;
@@ -54,8 +55,8 @@ h2, h3 {
 }
 
 .btn:hover, .styled-link:hover {
-    /* UPDATED: Darker orange for hover */
-    background-color: #e67e22; 
+    /* UPDATED: Darker blue for hover */
+    background-color: #0052cc; 
     transform: translateY(-2px);
 }
 
@@ -69,11 +70,11 @@ form input[type="text"] {
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* UPDATED: Focus ring now orange to match buttons */
+/* UPDATED: Focus ring now blue to match buttons */
 form input[type="text"]:focus {
     outline: none;
-    border-color: #f39c12;
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.25);
+    border-color: #0067f4;
+    box-shadow: 0 0 0 3px rgba(0, 103, 244, 0.2);
 }
 
 /* --- QR Code & Scanner Styles --- */
