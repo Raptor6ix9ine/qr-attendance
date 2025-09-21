@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Teacher Dashboard</title>
-  <script>
-    async function refreshAttendance() {
-      const res = await fetch("/teacher/check/{{session_id}}");
-      const data = await res.json();
-      document.getElementById("list").innerHTML = data.join("<br>");
-    }
-    setInterval(refreshAttendance, 3000);
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h2>Session ID: {{session_id}}</h2>
-  <img src="data:image/png;base64,{{qr_data}}" width="200"><br>
-  <p>Ask students to scan this QR</p>
-  <h3>Attendance:</h3>
-  <div id="list">(waiting for students...)</div>
+    <div class="container">
+        <h2>Teacher Dashboard</h2>
+        <h3>Session ID: {{session_id}}</h3>
+        <p>Ask students to scan this QR code to mark their attendance.</p>
+        <img src="data:image/png;base64,{{qr_data}}" width="250" alt="QR Code">
+        <h3>Live Attendance:</h3>
+        <div id="list">(Waiting for students...)</div>
+    </div>
+
+    <script>
+        async function refreshAttendance() {
+            const res = await fetch("/teacher/check/{{session_id}}");
+            const data = await res.json();
+            const listElement = document.getElementById("list");
+            if (data.length > 0) {
+                listElement.innerHTML = data.join("<br>");
+            } else {
+                listElement.innerHTML = "(Waiting for students...)";
+            }
+        }
+        setInterval(refreshAttendance, 3000);
+    </script>
 </body>
 </html>

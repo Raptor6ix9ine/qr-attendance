@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Attendance Prototype</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Attendance System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h2>Welcome to QR Attendance Prototype</h2>
-  <p><a href="/teacher/start">👨‍🏫 Teacher: Start Session</a></p>
-  <p><a href="/student">👩‍🎓 Student: Mark Attendance</a></p>
+    <div class="container">
+        <h2>Welcome to the QR Attendance System</h2>
+        <p>Choose your role to begin.</p>
+        <a href="/teacher/start" class="styled-link">👨‍🏫 Teacher: Start Session</a>
+        <a href="/student" class="styled-link">👩‍🎓 Student: Mark Attendance</a>
+    </div>
 </body>
 </html>

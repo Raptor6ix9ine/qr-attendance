@@ -1,59 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Student Attendance</title>
-  <script src="https://unpkg.com/html5-qrcode"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
-  <h2>Student Check-In</h2>
-  <form method="post" action="/student/submit">
-    <input type="hidden" name="session_id" id="session_id">
-    <label>Your Name:</label>
-    <input type="text" name="name" required>
-    <button type="submit">Submit</button>
-  </form>
+    <div class="container">
+        <h2>Student Check-In</h2>
+        <form method="post" action="/student/submit">
+            <input type="hidden" name="session_id" id="session_id">
+            <label for="name">Your Name:</label>
+            <input type="text" name="name" id="name" required>
+            <button type="submit" class="btn">Submit Attendance</button>
+        </form>
 
-  <h3>Scan QR Code:</h3>
-  <div id="reader" style="width:300px"></div>
-  <p id="scan-success" style="color: green; font-weight: bold;"></p>
+        <h3 id="scan-title">Scan QR Code:</h3>
+        <div id="reader" style="width:300px"></div>
+        <p id="scan-success" style="color: green; font-weight: bold;"></p>
+    </div>
 
- <script>
-    function onScanSuccess(decodedText) {
-      // Hide the scanner and show a success message
-      html5QrCode.stop().then(ignore => {
-        document.getElementById("reader").style.display = "none";
-        document.getElementById("scan-success").innerText = "✅ QR Code Scanned: " + decodedText;
-        document.getElementById("session_id").value = decodedText;
-      }).catch(err => console.log("Failed to stop scanner.", err));
-    }
-
-    const html5QrCode = new Html5Qrcode("reader");
-    
-    Html5Qrcode.getCameras().then(devices => {
-      if (devices && devices.length) {
-        // Find the rear camera by looking for "back" in the label
-        let cameraId = devices[0].id; // Default to the first camera
-        const rearCamera = devices.find(device => device.label.toLowerCase().includes('back'));
-        
-        if (rearCamera) {
-          cameraId = rearCamera.id;
+    <script>
+        function onScanSuccess(decodedText) {
+          html5QrCode.stop().then(ignore => {
+            document.getElementById("reader").style.display = "none";
+            document.getElementById("scan-title").style.display = "none";
+            document.getElementById("scan-success").innerText = "✅ QR Code Scanned!";
+            document.getElementById("session_id").value = decodedText;
+          }).catch(err => console.log("Failed to stop scanner.", err));
         }
 
-        // Start scanning with the selected camera
-        html5QrCode.start(
-          cameraId, 
-          {
-            fps: 10,
-            qrbox: { width: 250, height: 250 }
-          },
-          onScanSuccess
-        ).catch(err => {
-          console.log("Unable to start scanning.", err);
-        });
-      }
-    }).catch(err => {
-      console.log("Error getting cameras.", err);
-    });
-</script>
+        const html5QrCode = new Html5Qrcode("reader");
+        
+        Html5Qrcode.getCameras().then(devices => {
+          if (devices && devices.length) {
+            let cameraId = devices[0].id;
+            const rearCamera = devices.find(device => device.label.toLowerCase().includes('back'));
+            if (rearCamera) {
+              cameraId = rearCamera.id;
+            }
+            html5QrCode.start(
+              cameraId, 
+              { fps: 10, qrbox: { width: 250, height: 250 } },
+              onScanSuccess
+            ).catch(err => console.log("Unable to start scanning.", err));
+          }
+        }).catch(err => console.log("Error getting cameras.", err));
+    </script>
 </body>
 </html>
