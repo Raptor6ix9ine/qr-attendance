@@ -10,24 +10,30 @@
 <body>
     <div class="container">
         <h2>Student Check-In</h2>
-        <form method="post" action="/student/submit">
-            <input type="hidden" name="session_id" id="session_id">
-            <label for="roll_number">Your Roll Number:</label>
-            <input type="text" name="roll_number" id="roll_number" required>
-            <button type="submit" class="btn">Submit Attendance</button>
-        </form>
+        
+        {% if session_active %}
+            <form method="post" action="/student/submit">
+                <input type="hidden" name="session_id" id="session_id">
+                <p>Your Roll Number: <strong>{{ roll_number }}</strong></p>
+                <button type="submit" class="btn">Mark My Attendance</button>
+            </form>
 
-        <h3 id="scan-title">Scan QR Code:</h3>
-        <div id="reader" style="width:300px"></div>
-        <p id="scan-success" style="color: green; font-weight: bold;"></p>
+            <h3 id="scan-title">Scan QR Code:</h3>
+            <div id="reader" style="width:300px"></div>
+            <p id="scan-success" style="color: green; font-weight: bold;"></p>
+        {% else %}
+            <h3>No Active Session</h3>
+            <p>There is currently no active attendance session, or the session has expired (sessions last 20 minutes).</p>
+        {% endif %}
     </div>
 
+    {% if session_active %}
     <script>
         function onScanSuccess(decodedText) {
           html5QrCode.stop().then(ignore => {
             document.getElementById("reader").style.display = "none";
             document.getElementById("scan-title").style.display = "none";
-            document.getElementById("scan-success").innerText = "✅ QR Code Scanned!";
+            document.getElementById("scan-success").innerText = "✅ QR Code Scanned! Click the button above to submit.";
             document.getElementById("session_id").value = decodedText;
           }).catch(err => console.log("Failed to stop scanner.", err));
         }
@@ -49,5 +55,6 @@
           }
         }).catch(err => console.log("Error getting cameras.", err));
     </script>
+    {% endif %}
 </body>
 </html>
