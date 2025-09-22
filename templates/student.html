@@ -25,6 +25,8 @@
             <h3>No Active Session</h3>
             <p>There is currently no active attendance session, or the session has expired (sessions last 20 minutes).</p>
         {% endif %}
+        
+        <a href="/logout" class="styled-link" style="background-color: #6c757d; margin-top: 30px;">Logout</a>
     </div>
 
     {% if session_active %}
