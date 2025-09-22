@@ -6,7 +6,6 @@ app = Flask(__name__)
 app.secret_key = "your_super_secret_key" # Needed for session management
 
 # --- In-memory store for the demo ---
-# In a real app, this would be a database
 TEACHER_CREDS = {"teacher": "password123"}
 STUDENT_CREDS = {"160323737012": "studentpass"}
 SESSIONS = {}
@@ -22,7 +21,8 @@ def generate_qr_code(data):
 def index():
     user_type = session.get("user_type")
     if user_type == 'teacher':
-        return redirect(url_for('teacher_dashboard'))
+        # UPDATED REDIRECT: Go to start a session if already logged in
+        return redirect(url_for('teacher_start'))
     elif user_type == 'student':
         return redirect(url_for('student_scan'))
     return render_template("index.html")
@@ -35,7 +35,8 @@ def teacher_login():
         password = request.form.get("password")
         if TEACHER_CREDS.get(username) == password:
             session["user_type"] = "teacher"
-            return redirect(url_for("teacher_dashboard"))
+            # UPDATED REDIRECT: Go directly to start a session after login
+            return redirect(url_for("teacher_start"))
         return render_template("teacher_login.html", error="Invalid credentials")
     return render_template("teacher_login.html")
 
@@ -57,13 +58,8 @@ def logout():
     return redirect(url_for("index"))
 
 # --- Teacher Routes ---
-@app.route("/teacher/dashboard")
-def teacher_dashboard():
-    if session.get("user_type") != "teacher":
-        return redirect(url_for("teacher_login"))
-    # The teacher dashboard can simply be a place to start a session
-    return render_template("index.html") # Or a dedicated dashboard page
-
+# The old "/teacher/dashboard" route has been removed to fix the loop.
+# "/teacher/start" is now the main destination after login.
 @app.route("/teacher/start")
 def teacher_start():
     if session.get("user_type") != "teacher":
@@ -95,7 +91,6 @@ def student_scan():
     session_active = False
     if current_session_id and current_session_id in SESSIONS:
         session_data = SESSIONS[current_session_id]
-        # Session Expiry Logic: 20 minutes
         if datetime.now() < session_data["created_at"] + timedelta(minutes=20):
             session_active = True
             
